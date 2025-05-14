@@ -12,11 +12,7 @@ class TelegramController extends Controller
         $text = $request['message']['text'] ?? '';
         $chatId = $request['message']['chat']['id'];
 
-
-        if ($text === '')
-            return response()->json(['status' => 'Not ok!'], 400);
-
-
+        
         // handle the command or the text provided by telegram user
         $handler = match ($text) {
             '/hello' => function () use ($chatId) {
