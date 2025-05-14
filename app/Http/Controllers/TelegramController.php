@@ -12,7 +12,7 @@ class TelegramController extends Controller
         $text = $request['message']['text'] ?? '';
         $chatId = $request['message']['chat']['id'];
 
-        
+
         // handle the command or the text provided by telegram user
         $handler = match ($text) {
             '/hello' => function () use ($chatId) {
@@ -40,7 +40,17 @@ class TelegramController extends Controller
     {
         $config = [
             'chat_id' => $chatId,
-            'text' => $message
+            'text' => $message,
+            'reply_markup' => json_encode([
+                'inline_keyboard' => [
+                    [
+                        [
+                            'text' => 'Open App 🚀',
+                            'url' => 'http://google.com'
+                        ]
+                    ]
+                ]
+            ])
         ];
 
         TelegramService::send($config);
