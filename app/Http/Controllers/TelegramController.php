@@ -25,6 +25,11 @@ class TelegramController extends Controller
                     $this->sendMessage($message, $chatId);
                 },
 
+            '/get_chat_id' => function () use ($chatId) {
+                    $message = "Your chat id is: {$chatId}";
+                    $this->sendMessage($message, $chatId);
+                },
+
             default => function () use ($chatId) {
                     $message = 'This command is not found in our list of registered commands. Please use one of our registered commands.';
                     $this->sendMessage($message, $chatId);
